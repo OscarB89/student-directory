@@ -15,7 +15,7 @@ def input_students
   while !name.empty? && !hobby.empty? do
   # while month is inappropriate
     while months.include?(cohort) == false
-      puts "Please enter an appropriate month"
+      puts "Please enter an appropriate month".center(50)
       cohort = gets.chomp.to_sym
     end
     # add the student hash to the array
@@ -35,11 +35,27 @@ def print_header
 end
 
 def print(students)
-  x = 0
-  while x < students.count do
-    puts "#{students[x][:name]} (#{students[x][:cohort]} cohort) with hobby: #{students[x][:hobby]}".center(50)
-    x += 1
+  puts "What month do you want to display?".center(50)
+  user_input = gets.chomp.to_sym
+
+  sorted_by_cohort = {}
+
+  students.each do |new_students|
+    cohort = new_students[:cohort]
+    students = new_students[:name]
+
+    if sorted_by_cohort[cohort] == nil
+      sorted_by_cohort[cohort] = [students]
+    else
+      sorted_by_cohort[cohort].push(students)
+    end
   end
+  puts sorted_by_cohort[user_input]
+  # x = 0
+  # while x < students.count do
+  #   puts "#{students[x][:name]} (#{students[x][:cohort]} cohort) with hobby: #{students[x][:hobby]}".center(50)
+  #   x += 1
+  # end
 end
 
 def print_footer(students)
