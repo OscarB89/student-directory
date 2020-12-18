@@ -20,7 +20,11 @@ def input_students
     end
     # add the student hash to the array
     students << {name: name, cohort: cohort, hobby: hobby}
-    puts "Now we have #{students.count} students".center(50)
+    if students.count == 1
+      puts "Now we have #{students.count} student".center(50)
+    else
+      puts "Now we have #{students.count} students".center(50)
+    end
     # get another name from the user
     name = gets.chomp.to_sym
     cohort = gets.chomp.to_sym
@@ -59,7 +63,11 @@ def print(students)
 end
 
 def print_footer(students)
-  puts "Overall, we have #{students.count} great students".center(50)
+  if students.count == 1
+    puts "Overall, we have #{students.count} great student".center(50)
+  else
+    puts "Overall, we have #{students.count} great students".center(50)
+  end
 end
 
 # nothing happens until we call the methods
