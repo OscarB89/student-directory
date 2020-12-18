@@ -65,7 +65,6 @@ def print_footer(students)
     puts "Overall, we have #{students.count} great students".center(50)
   end
 end
-
 # nothing happens until we call the methods
 students = input_students
 print_header
