@@ -6,9 +6,9 @@ def input_students
   # month_arr = ["january", "february", "march", "avril", "may", "june", "july", "august", "september", "october", "november", "december"]
   months = [:january, :february, :march, :avril, :may, :june, :july, :august, :september, :october, :november, :december]
   # get the first name and month
-  name = gets.chomp.to_sym
-  cohort = gets.chomp.to_sym
-  hobby = gets.chomp.to_sym
+  name = gets.strip.to_sym
+  cohort = gets.strip.to_sym
+  hobby = gets.strip.to_sym
   # January default month if month variable is empty
   # cohort = "january" if cohort.empty
   # while the name and hobby is not empty
@@ -16,7 +16,7 @@ def input_students
   # while month is inappropriate
     while months.include?(cohort) == false
       puts "Please enter an appropriate month".center(50)
-      cohort = gets.chomp.to_sym
+      cohort = gets.strip.to_sym
     end
     # add the student hash to the array
     students << {name: name, cohort: cohort, hobby: hobby}
@@ -26,9 +26,9 @@ def input_students
       puts "Now we have #{students.count} students".center(50)
     end
     # get another name from the user
-    name = gets.chomp.to_sym
-    cohort = gets.chomp.to_sym
-    hobby = gets.chomp.to_sym
+    name = gets.strip.to_sym
+    cohort = gets.strip.to_sym
+    hobby = gets.strip.to_sym
   end
   students
 end
@@ -40,7 +40,7 @@ end
 
 def print(students)
   puts "What month do you want to display?".center(50)
-  user_input = gets.chomp.to_sym
+  user_input = gets.strip.to_sym
 
   sorted_by_cohort = {}
 
