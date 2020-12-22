@@ -1,4 +1,5 @@
 @students = [] # an empty array accessible to all methods
+require 'CSV'
 
 def print_menu
   puts "1. Input the students"
@@ -83,32 +84,32 @@ end
 
 def save_students(filename)
   # open the file for writing
-  csv = CSV.new.open(filename, "w") do |csv|
+  csv = CSV.open(filename, "w") do |csv|
   # iterate over the array of students
     @students.each do |student|
-      student_data = [student[:name], student[:cohort]]
-      csv_line = student_data.join(",")
-      file.puts csv_line
+    #   student_data = [student[:name], student[:cohort]]
+    #   csv_line = student_data.join(",")
+    #   csv.puts csv_line
+    csv << [student[:name], student[:cohort]]
     end
   end
 end
 
 def load_students(filename)
-  # if !CSV.exists?(filename) == true
+  # if CSV.exists?(filename) == false
   #   filename = ("students.csv")
   # end
-  csv = CSV.new(filename, "r") do |csv|
-    csv.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
+  CSV.foreach(filename, "r") do |row|
+    # csv.readlines.each do |line|
+    name, cohort = row
       push_hash(name)
-    end
   end
 end
 
 def try_load_students
   filename = ARGV.first# first argument from the command line
   return if filename.nil? # get out of the method if it isn't given
-  if CSV.exists?(filename) # if it exists
+  if File.exists?(filename) # if it exists
     load_students(filename)
      puts "Loaded #{@students.count} from #{filename}"
   else # if it doesn't exist
